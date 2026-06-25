@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#e8dcab;color:#10180f}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="--ink:#f0efe1;--muted:#aeb398;--faint:#7e8062;--bg:#0c110a;--bg2:#0f140b;--card:#151c0f;--card2:#1c2414;--line:#2c3621;--gold:#ecdca0;--gold-2:#d8c486;--on-gold:#14140b;--sky-top:#0a0d09;--sky-mid:#0d120c;--sky-horizon:#16180e;--card-dir:row;--meta-grow:0;--meta-basis:180px;--body-basis:360px; background:var(--bg); color:var(--ink); font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif; line-height:1.6; min-height:100vh; -webkit-font-smoothing:antialiased; overflow-x:hidden;">
+
+  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:14px clamp(16px,4vw,40px); background:rgba(7,11,11,.62); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line);">
+    <a href="#top" style="display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--ink);">
+      <span style="width:11px; height:11px; transform:rotate(45deg); background:var(--gold); border-radius:2px; box-shadow:0 0 14px var(--gold);"></span>
+      <span style="font-weight:600; font-size:1.02rem;">{{ groupName }}</span>
+    </a>
+    <div style="display:flex; align-items:center; gap:clamp(14px,2.4vw,30px); flex-wrap:wrap;">
+      <a href="#about" style="color:var(--muted); text-decoration:none; font-size:.95rem; font-weight:500;" style-hover="color:var(--gold);">What is CE-5?</a>
+      <a href="#events" style="color:var(--muted); text-decoration:none; font-size:.95rem; font-weight:500;" style-hover="color:var(--gold);">Events</a>
+      <a href="#retreat" style="color:var(--muted); text-decoration:none; font-size:.95rem; font-weight:500;" style-hover="color:var(--gold);">Location</a>
+      <a href="#contact" style="color:var(--muted); text-decoration:none; font-size:.95rem; font-weight:500;" style-hover="color:var(--gold);">Contact</a>
+      <a href="#events" style="display:inline-flex; align-items:center; padding:8px 16px; border-radius:999px; border:1px solid var(--gold-2); color:var(--gold); text-decoration:none; font-size:.9rem; font-weight:600;" style-hover="background:var(--gold); color:var(--on-gold);">Upcoming events</a>
+    </div>
+  </nav>
+
+  <section id="top" data-screen-label="Hero" style="position:relative; min-height:100svh; overflow:hidden; display:flex; background:#06090a;">
+    <img src="assets/hero-night.jpg" alt="Tall evergreens silhouetted against the Milky Way over a Pacific Northwest forest at night" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42%; z-index:0;">
+    <canvas ref="{{ canvasRef }}" style="position:absolute; inset:0; width:100%; height:100%; display:block; z-index:1; pointer-events:none;"></canvas>
+    <div style="position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(180deg, rgba(5,9,10,.62), rgba(5,9,10,0) 26%);"></div>
+    <div style="position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse 78% 64% at 50% 44%, rgba(0,0,0,.42), rgba(0,0,0,0) 72%);"></div>
+    <div style="position:absolute; left:0; right:0; bottom:0; height:58%; z-index:1; pointer-events:none; background:linear-gradient(180deg, transparent, rgba(7,11,10,.45) 56%, var(--bg));"></div>
+    <sc-if value="{{ heroCentered }}" hint-placeholder-val="{{ true }}">
+      <div style="position:relative; z-index:2; width:100%; max-width:880px; margin:auto; padding:130px clamp(20px,5vw,40px) 23vh; text-align:center; display:flex; flex-direction:column; align-items:center; gap:24px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(11px,1.4vw,13px); letter-spacing:.34em; text-transform:uppercase; color:var(--gold-2);">EASTERN WASHINGTON STATE</div>
+        <h1 style="margin:0; font-size:clamp(2.6rem,7vw,5.2rem); line-height:1.02; font-weight:300; letter-spacing:-.02em; color:var(--ink); text-shadow:0 2px 34px rgba(0,0,0,.55); margin-bottom:-16px;">CE-5</h1>
+        <h1 style="margin:0; line-height:1.02; font-weight:300; letter-spacing:-.02em; color:var(--ink); text-shadow:0 2px 34px rgba(0,0,0,.55); font-size:50px;">AT THE EXPERIENCER CENTER</h1>
+        <p style="margin:0; max-width:560px; font-size:clamp(1.05rem,2.4vw,1.32rem); line-height:1.6; color:var(--muted); text-shadow:0 1px 18px rgba(0,0,0,.55);">Gather under dark Washington skies for CE5, a peaceful meditation practice for human-initiated contact with non-human intelligence.</p>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:6px;">
+          <a href="#events" style="display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">See upcoming events</a>
+          <a href="#about" style="display:inline-flex; align-items:center; padding:14px 24px; border-radius:999px; background:rgba(255,255,255,.05); color:var(--ink); border:1px solid var(--line); text-decoration:none; font-weight:500; backdrop-filter:blur(6px);" style-hover="border-color:var(--gold-2);">What is CE-5?</a>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ heroLeft }}" hint-placeholder-val="{{ false }}">
+      <div style="position:relative; z-index:2; width:100%; max-width:1180px; margin:auto auto 0; padding:130px clamp(20px,5vw,40px) 18vh; align-self:flex-end; display:flex; flex-direction:column; align-items:flex-start; gap:22px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(11px,1.4vw,13px); letter-spacing:.34em; text-transform:uppercase; color:var(--gold-2);">Pacific Northwest · CE-5 Contact</div>
+        <h1 style="margin:0; font-size:clamp(2.6rem,7vw,5.4rem); line-height:1.02; font-weight:300; letter-spacing:-.02em; color:var(--ink); text-shadow:0 2px 34px rgba(0,0,0,.55);">{{ groupName }}</h1>
+        <p style="margin:0; max-width:560px; font-size:clamp(1.05rem,2.4vw,1.32rem); line-height:1.6; color:var(--muted); text-shadow:0 1px 18px rgba(0,0,0,.55);">Gather under the dark skies of the Washington wilderness for peaceful, human-initiated contact — a calm, meditative field practice held among the cedars and stars.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:6px;">
+          <a href="#events" style="display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">See upcoming events</a>
+          <a href="#about" style="display:inline-flex; align-items:center; padding:14px 24px; border-radius:999px; background:rgba(255,255,255,.05); color:var(--ink); border:1px solid var(--line); text-decoration:none; font-weight:500; backdrop-filter:blur(6px);" style-hover="border-color:var(--gold-2);">What is CE-5?</a>
+        </div>
+      </div>
+    </sc-if>
+  </section>
+
+  <section id="about" data-screen-label="What is CE-5" style="scroll-margin-top:74px; background:var(--bg); padding:clamp(72px,10vw,128px) clamp(20px,5vw,40px);">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(11px,1.4vw,13px); letter-spacing:.28em; text-transform:uppercase; color:var(--gold-2); margin-bottom:18px;">What is CE-5?</div>
+      <h2 style="margin:0 0 22px; font-size:clamp(1.9rem,4.4vw,3rem); font-weight:300; line-height:1.12; letter-spacing:-.015em; color:var(--ink); max-width:18ch;">Quiet, intentional contact, not the search for lights in the sky.</h2>
+      <p style="margin:0 0 32px; max-width:680px; font-size:clamp(1.08rem,2vw,1.28rem); line-height:1.65; color:var(--muted);">CE5 stands for Close Encounter of the Fifth Kind. It is a peaceful practice of human initiated contact, where a group gathers under the night sky in meditation, stillness, and shared intention. Together, we extend a calm and respectful invitation to any non-human intelligence that may be present.</p>
+      <a href="#events" style="display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16); margin-bottom:32px;" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Read FAQs</a>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px;">
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:18px; padding:clamp(22px,3vw,30px);">
+          <h3 style="margin:0 0 10px; font-size:1.3rem; font-weight:600; color:var(--ink);">Meditative</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.6;">At its heart, CE-5 is a meditative group field practice. We sit together in the dark, settle the mind, and hold a calm, coherent, welcoming state. No equipment required, only presence, patience, and respect.</p>
+        </div>
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:18px; padding:clamp(22px,3vw,30px);">
+          <h3 style="margin:0 0 10px; font-size:1.3rem; font-weight:600; color:var(--ink);">Opportunities for subtle contact</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.6;">Contact may occur in ways that are subtle and easy to dismiss. For most encounters there is always the option to believe that something is happening or its just your imagination. But its through synchronicity and imagination that a great deal of our contact occurs. Our imagination is the doorway into the higher self and to contact.</p>
+        </div>
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:18px; padding:clamp(22px,3vw,30px);">
+          <h3 style="margin:0 0 10px; font-size:1.3rem; font-weight:600; color:var(--ink);">Service</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.6;">Contact should always be done as a form of service. In performing the puja before CE5 we request that the contact be of a nature that promotes our own spiritual growth. In this way, it is for the highest good.</p>
+        </div>
+      </div>
+      <p style="margin:38px 0 0; max-width:780px; font-size:.98rem; line-height:1.65; color:var(--faint);">The contact protocols we follow were developed by <span style="color:var(--muted);">Dr. Steven Greer</span> and <span style="color:var(--muted);">CSETI, the Center for the Study of Extraterrestrial Intelligence</span>. We are an independent group practicing in that tradition.</p>
+    </div>
+  </section>
+
+  <section id="events" data-screen-label="Upcoming Events" style="scroll-margin-top:74px; background:var(--bg2); padding:clamp(72px,10vw,128px) clamp(20px,5vw,40px);">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(11px,1.4vw,13px); letter-spacing:.28em; text-transform:uppercase; color:var(--gold-2); margin-bottom:18px;">Upcoming Events</div>
+      <h2 style="margin:0 0 18px; font-size:clamp(1.9rem,4.4vw,3rem); font-weight:300; line-height:1.12; letter-spacing:-.015em; color:var(--ink);">Join us for a night of contact.</h2>
+      <p style="margin:0 0 46px; max-width:680px; font-size:clamp(1.05rem,2vw,1.22rem); line-height:1.65; color:var(--muted);">Each gathering is held at The Experiencer Center under some of Washington's darkest skies. Attendees may camp on-site for a full night outdoors.</p>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+
+        <article style="display:flex; flex-direction:var(--card-dir); flex-wrap:wrap; gap:clamp(18px,2.6vw,32px); background:var(--card); border:1px solid var(--line); border-radius:20px; padding:clamp(20px,3vw,32px);">
+          <div style="flex:var(--meta-grow) 1 var(--meta-basis); min-width:170px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:inline-flex; flex-direction:column; align-items:center; gap:4px; align-self:flex-start; padding:14px 20px; border:1px solid var(--line); border-radius:14px; background:var(--card2);">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);">2026</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);">JUL</span>
+              <span style="font-size:2.2rem; font-weight:300; line-height:1; color:var(--gold);">18</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);">SATURDAY</span>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Time</div>
+              <div style="color:var(--ink); font-size:.98rem;">6 pm - 2 am</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Location</div>
+              <div style="color:var(--ink); font-size:.98rem; line-height:1.5;">Near Kettle Falls, Washington</div>
+              <div style="color:var(--faint); font-size:.82rem; line-height:1.45; margin-top:3px;">Exact retreat location shared privately with registered attendees.</div>
+            </div>
+          </div>
+          <div style="flex:3 1 var(--body-basis); min-width:250px; display:flex; flex-direction:column; gap:16px;">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-2); margin-bottom:8px;">GATHERING</div>
+              <button type="button" onClick="{{ openEvent1 }}" style="margin:0; padding:0; background:none; border:none; text-align:left; cursor:pointer; font-family:inherit; font-size:clamp(1.4rem,3vw,1.85rem); font-weight:600; line-height:1.15; color:var(--ink);" style-hover="color:var(--gold);">First CE-5 of the 2026 season</button>
+            </div>
+            <div style="border-top:1px solid var(--line); padding-top:15px;">
+              <p style="margin:0; color:var(--muted); line-height:1.62;">A single night event of CE5 with optional camping.</p>
+              <div style="display:flex; flex-direction:column; gap:12px; margin-top:12px;">
+                <p style="margin:0; color:var(--muted); line-height:1.62;">All levels welcome. Beginners should attend the orientation session with overview, instruction, and Q&amp;A beginning at 6:30 pm. Puja will start between 8–9 and all participants should be present for the Puja.</p>
+                <div style="color:#AEB398;">Location is 40 minutes from a hotel. Camping is available at the site.</div>
+              </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:auto; padding-top:4px;">
+              <a href="https://www.eventbrite.com/e/your-event-placeholder-1" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; font-size:.96rem; border:1px solid var(--gold);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Register on Eventbrite</a>
+              <button type="button" onClick="{{ openEvent1 }}" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:999px; background:rgba(255,255,255,.04); color:var(--ink); font-weight:600; font-size:.96rem; border:1px solid var(--line); cursor:pointer;" style-hover="border-color:var(--gold-2);">View event details →</button>
+            </div>
+          </div>
+        </article>
+
+        <article style="display:flex; flex-direction:var(--card-dir); flex-wrap:wrap; gap:clamp(18px,2.6vw,32px); background:var(--card); border:1px solid var(--line); border-radius:20px; padding:clamp(20px,3vw,32px);">
+          <div style="flex:var(--meta-grow) 1 var(--meta-basis); min-width:170px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:inline-flex; flex-direction:column; align-items:center; gap:4px; align-self:flex-start; padding:14px 20px; border:1px solid var(--line); border-radius:14px; background:var(--card2);">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);">2026</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);">AUG</span>
+              <span style="font-size:2.2rem; font-weight:300; line-height:1; color:var(--gold);">15</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);">SATURDAY</span>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Time</div>
+              <div style="color:var(--ink); font-size:.98rem;">6 pm - 2 am</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Location</div>
+              <div style="color:var(--ink); font-size:.98rem; line-height:1.5;">Near Kettle Falls, Washington</div>
+              <div style="color:var(--faint); font-size:.82rem; line-height:1.45; margin-top:3px;">Exact retreat location shared privately with registered attendees.</div>
+            </div>
+          </div>
+          <div style="flex:3 1 var(--body-basis); min-width:250px; display:flex; flex-direction:column; gap:16px;">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-2); margin-bottom:8px;">GATHERING</div>
+              <button type="button" onClick="{{ openEvent2 }}" style="margin:0; padding:0; background:none; border:none; text-align:left; cursor:pointer; font-family:inherit; font-size:clamp(1.4rem,3vw,1.85rem); font-weight:600; line-height:1.15; color:var(--ink);" style-hover="color:var(--gold);">Perseid meteor shower CE5</button>
+            </div>
+            <div style="border-top:1px solid var(--line); padding-top:15px;">
+              <p style="margin:0 0 12px; color:var(--muted); line-height:1.62;">With the new moon making the skies exceptionally dark, the Perseid meteor shower will be spectacular.</p>
+              <p style="margin:0; color:var(--muted); line-height:1.62;">A single night event of CE5 with optional camping.</p>
+              <div style="display:flex; flex-direction:column; gap:12px; margin-top:12px;">
+                <p style="margin:0; color:var(--muted); line-height:1.62;">All levels welcome. Beginners should attend the orientation session with overview, instruction, and Q&amp;A beginning at 6:30 pm. Puja will start between 8–9 and all participants should be present for the Puja.</p>
+                <div style="color:#AEB398;">Location is 40 minutes from a hotel. Camping is available at the site.</div>
+              </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:auto; padding-top:4px;">
+              <a href="https://www.eventbrite.com/e/your-event-placeholder-2" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; font-size:.96rem; border:1px solid var(--gold);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Register on Eventbrite</a>
+              <button type="button" onClick="{{ openEvent2 }}" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:999px; background:rgba(255,255,255,.04); color:var(--ink); font-weight:600; font-size:.96rem; border:1px solid var(--line); cursor:pointer;" style-hover="border-color:var(--gold-2);">View event details →</button>
+            </div>
+          </div>
+        </article>
+
+        <article style="display:flex; flex-direction:var(--card-dir); flex-wrap:wrap; gap:clamp(18px,2.6vw,32px); background:var(--card); border:1px solid var(--line); border-radius:20px; padding:clamp(20px,3vw,32px);">
+          <div style="flex:var(--meta-grow) 1 var(--meta-basis); min-width:170px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:inline-flex; flex-direction:column; align-items:center; gap:4px; align-self:flex-start; padding:14px 20px; border:1px solid var(--line); border-radius:14px; background:var(--card2);">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);">2026</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);">SEPT</span>
+              <span style="font-size:2.2rem; font-weight:300; line-height:1; color:var(--gold);">12</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);">SATURDAY</span>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Time</div>
+              <div style="color:var(--ink); font-size:.98rem;">6 pm - 2 am</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Location</div>
+              <div style="color:var(--ink); font-size:.98rem; line-height:1.5;">Near Kettle Falls, Washington</div>
+              <div style="color:var(--faint); font-size:.82rem; line-height:1.45; margin-top:3px;">Exact retreat location shared privately with registered attendees.</div>
+            </div>
+          </div>
+          <div style="flex:3 1 var(--body-basis); min-width:250px; display:flex; flex-direction:column; gap:16px;">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-2); margin-bottom:8px;">GATHERING</div>
+              <button type="button" onClick="{{ openEvent3 }}" style="margin:0; padding:0; background:none; border:none; text-align:left; cursor:pointer; font-family:inherit; font-size:clamp(1.4rem,3vw,1.85rem); font-weight:600; line-height:1.15; color:var(--ink);" style-hover="color:var(--gold);">New moon CE5</button>
+            </div>
+            <div style="border-top:1px solid var(--line); padding-top:15px;">
+              <p style="margin:0 0 12px; color:var(--muted); line-height:1.62;">Two nights after the new moon, so it should be another excellent dark-sky weekend.</p>
+              <p style="margin:0; color:var(--muted); line-height:1.62;">A single night event of CE5 with optional camping.</p>
+              <div style="display:flex; flex-direction:column; gap:12px; margin-top:12px;">
+                <p style="margin:0; color:var(--muted); line-height:1.62;">All levels welcome. Beginners should attend the orientation session with overview, instruction, and Q&amp;A beginning at 6:30 pm. Puja will start between 8–9 and all participants should be present for the Puja.</p>
+                <div style="color:#AEB398;">Location is 40 minutes from a hotel. Camping is available at the site.</div>
+              </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:auto; padding-top:4px;">
+              <a href="https://www.eventbrite.com/e/your-event-placeholder-3" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; font-size:.96rem; border:1px solid var(--gold);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Register on Eventbrite</a>
+              <button type="button" onClick="{{ openEvent3 }}" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:999px; background:rgba(255,255,255,.04); color:var(--ink); font-weight:600; font-size:.96rem; border:1px solid var(--line); cursor:pointer;" style-hover="border-color:var(--gold-2);">View event details →</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="retreat" data-screen-label="Camping &amp; Retreat" style="scroll-margin-top:74px; background:var(--bg); padding:clamp(72px,10vw,128px) clamp(20px,5vw,40px);">
+    <div style="max-width:1180px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(28px,4vw,56px); align-items:center;">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(11px,1.4vw,13px); letter-spacing:.28em; text-transform:uppercase; color:var(--gold-2); margin-bottom:18px;">THE VENUE</div>
+          <h2 style="margin:0 0 20px; font-size:clamp(1.9rem,4.4vw,3rem); font-weight:300; line-height:1.12; letter-spacing:-.015em; color:var(--ink);">The experiencer center</h2>
+          <p style="margin:0 0 18px; color:var(--muted); line-height:1.65; font-size:1.08rem;">Our gatherings are held at a small and growing retreat deep in the Washington forest far from city light and noise, where the Milky Way still reaches the horizon. The experiencer center's mission is to support experiencers who've had anomolous and ontologically shocking experiences.</p>
+          <p style="margin:0; color:var(--muted); line-height:1.65; font-size:1.08rem;">If you're camping after the CE-5 the center provides these ammenities.</p>
+        </div>
+        <div style="aspect-ratio:16/11; border:1px solid var(--line); border-radius:18px; background:repeating-linear-gradient(135deg, var(--card) 0 15px, var(--card2) 15px 30px); display:flex; align-items:center; justify-content:center; padding:20px; text-align:center;">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.18em; color:var(--faint);">CAMPSITE UNDER DARK SKIES — PHOTO</span>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:clamp(40px,6vw,72px);">
+        <div style="border:1px solid var(--line); border-radius:16px; background:var(--card); padding:24px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:1.4rem; font-weight:500; color:var(--gold); margin-bottom:12px;">01</div>
+          <h3 style="margin:0 0 8px; font-size:1.12rem; font-weight:600; color:var(--ink);">Outdoor shower</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.55; font-size:.95rem;">An outdoor shower for a morning shower.</p>
+        </div>
+        <div style="border:1px solid var(--line); border-radius:16px; background:var(--card); padding:24px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:1.4rem; font-weight:500; color:var(--gold); margin-bottom:12px;">02</div>
+          <h3 style="margin:0 0 8px; font-size:1.12rem; font-weight:600; color:var(--ink);">Outdoor kitchen</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.55; font-size:.95rem;">A covered prep with sink, fridge, microwave, and coffee maker.</p>
+        </div>
+        <div style="border:1px solid var(--line); border-radius:16px; background:var(--card); padding:24px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:1.4rem; font-weight:500; color:var(--gold); margin-bottom:12px;">03</div>
+          <h3 style="margin:0 0 8px; font-size:1.12rem; font-weight:600; color:var(--ink);">Porta-potty</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.55; font-size:.95rem;">A clean, serviced portable restroom on-site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-screen-label="Get Involved" style="scroll-margin-top:74px; padding:clamp(72px,10vw,128px) clamp(20px,5vw,40px); background:radial-gradient(1.5px 1.5px at 18% 26%, rgba(238,243,255,.55), transparent), radial-gradient(1.5px 1.5px at 72% 40%, rgba(238,243,255,.4), transparent), radial-gradient(2px 2px at 44% 68%, rgba(241,227,176,.45), transparent), radial-gradient(1.5px 1.5px at 88% 76%, rgba(238,243,255,.4), transparent), radial-gradient(1.5px 1.5px at 30% 84%, rgba(238,243,255,.35), transparent), var(--bg2);">
+    <div style="max-width:720px; margin:0 auto; text-align:center;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(11px,1.4vw,13px); letter-spacing:.28em; text-transform:uppercase; color:var(--gold-2); margin-bottom:18px;">Get Involved</div>
+      <h2 style="margin:0 0 18px; font-size:clamp(1.9rem,4.4vw,2.9rem); font-weight:300; line-height:1.14; letter-spacing:-.015em; color:var(--ink);">New to this? You're exactly who we hope to meet.</h2>
+      <p style="margin:0 0 34px; font-size:clamp(1.08rem,2vw,1.25rem); line-height:1.65; color:var(--muted);">No experience, equipment, or belief required — only curiosity and an open, respectful mind. Reach out and we'll help you get ready for your first night under the stars.</p>
+      <a href="mailto:CE5@theExperiencerCenter.org" style="display:inline-flex; align-items:center; gap:9px; padding:15px 30px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; font-size:1.05rem; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">CE5@theExperiencerCenter.org</a>
+      <p style="margin:30px 0 0; font-size:.9rem; color:var(--faint); line-height:1.6;">Washington State, USA · The exact retreat location is shared privately with registered attendees.</p>
+    </div>
+  </section>
+
+  <footer style="background:var(--bg); border-top:1px solid var(--line); padding:clamp(40px,6vw,64px) clamp(20px,5vw,40px);">
+    <div style="max-width:1180px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:28px;">
+      <div style="max-width:340px;">
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:12px;">
+          <span style="width:11px; height:11px; transform:rotate(45deg); background:var(--gold); border-radius:2px;"></span>
+          <span style="font-weight:600; font-size:1.02rem; color:var(--ink);">{{ groupName }}</span>
+        </div>
+        <p style="margin:0; color:var(--faint); font-size:.92rem; line-height:1.6;">Peaceful, human-initiated CE-5 contact in the Washington wilderness.</p>
+      </div>
+      <div style="display:flex; gap:clamp(20px,4vw,48px); flex-wrap:wrap;">
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="#about" style="color:var(--muted); text-decoration:none; font-size:.92rem;" style-hover="color:var(--gold);">What is CE-5?</a>
+          <a href="#events" style="color:var(--muted); text-decoration:none; font-size:.92rem;" style-hover="color:var(--gold);">Events</a>
+          <a href="#retreat" style="color:var(--muted); text-decoration:none; font-size:.92rem;" style-hover="color:var(--gold);">Retreat</a>
+          <a href="#contact" style="color:var(--muted); text-decoration:none; font-size:.92rem;" style-hover="color:var(--gold);">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1180px; margin:32px auto 0; padding-top:22px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;">
+      <span style="color:var(--faint); font-size:.85rem;">CE-5 contact protocols developed by Dr. Steven Greer / CSETI.</span>
+      <span style="color:var(--faint); font-size:.85rem;">© 2026 {{ groupName }}</span>
+    </div>
+  </footer>
+
+  <!-- ═══ OVERLAY 1 — First CE-5 of the 2026 season ═══ -->
+  <sc-if value="{{ detailOpen1 }}" hint-placeholder-val="{{ false }}">
+    <div ref="{{ overlay1Ref }}" style="position:fixed; inset:0; z-index:200; overflow-y:auto; background:var(--bg); color:var(--ink);">
+      <div style="position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px clamp(16px,4vw,40px); background:rgba(10,14,9,.72); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line);">
+        <button type="button" onClick="{{ closeEvent1 }}" style="display:inline-flex; align-items:center; gap:8px; background:none; border:none; cursor:pointer; font:inherit; font-size:.95rem; color:var(--muted);" style-hover="color:var(--gold);">← All events</button>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:10px; height:10px; transform:rotate(45deg); background:var(--gold); border-radius:2px;"></span>
+          <span style="font-weight:600;">{{ groupName }}</span>
+        </div>
+      </div>
+      <header style="max-width:920px; margin:0 auto; padding:clamp(40px,7vw,80px) clamp(20px,5vw,40px) clamp(26px,4vw,40px);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:clamp(11px,1.4vw,13px); letter-spacing:.28em; text-transform:uppercase; color:var(--gold-2);">Upcoming Gathering</div>
+        <h1 style="margin:12px 0 0; font-size:clamp(2rem,5.4vw,3.4rem); font-weight:300; line-height:1.08; letter-spacing:-.02em; color:var(--ink);">First CE-5 of the 2026 season</h1>
+        <div style="display:flex; flex-wrap:wrap; gap:12px 30px; margin-top:24px;">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Date</div>
+            <div style="color:var(--ink); font-size:1rem;">Saturday, July 18th, 2026</div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Time</div>
+            <div style="color:var(--ink); font-size:1rem;">6pm – 2am</div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Location</div>
+            <div style="color:var(--ink); font-size:1rem;">Near Kettle Falls, Washington</div>
+            <div style="color:var(--faint); font-size:.84rem; margin-top:4px;">Exact retreat location shared privately with registered attendees.</div>
+          </div>
+        </div>
+        <a href="https://www.eventbrite.com/e/your-event-placeholder-1" target="_blank" rel="noopener" style="margin-top:26px; display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Register on Eventbrite →</a>
+      </header>
+      <div style="max-width:920px; margin:0 auto; padding:0 clamp(20px,5vw,40px) clamp(60px,9vw,120px); display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(28px,4vw,48px); align-items:start;">
+        <div style="display:flex; flex-direction:column; gap:30px; min-width:0;">
+          <p style="margin:0; font-size:clamp(1.12rem,2vw,1.32rem); line-height:1.65; color:var(--ink);">Our flagship gathering of the season, timed to the darkest skies of the lunar month. Newcomers are warmly welcome — most of the night is gentle, guided, and unhurried.</p>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <p style="margin:0; color:var(--muted); line-height:1.7;">We begin at dusk with camp setup and a shared meal, then move into an orientation that covers what CE-5 is, what to expect, and how we keep the field calm and coherent. After a guided meditation we head out to the observation clearing together.</p>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">There is no pressure to "see" anything. The practice itself — sitting quietly under the stars with a welcoming group — is the point. We stay out until the early hours, taking breaks at the fire as needed.</p>
+          </div>
+          <div>
+            <h2 style="margin:0 0 14px; font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:600; color:var(--ink);">Evening schedule</h2>
+            <div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">6:30 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Orientation for first-timers or beginners</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">7:30 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Shared meal at the fire ring</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">8:30 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Puja &amp; guided meditation</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">9:30 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Move to the observation clearing</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">1:30 AM</span>
+                <span style="color:var(--ink); line-height:1.45;">Wind down · overnight camp</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2 style="margin:0 0 12px; font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:600; color:var(--ink);">Cost</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">Registration cost for CE-5: $15</p>
+            <div style="color:#AEB398; margin-top:4px;">Optional camping cost: $25</div>
+            <div style="font-size:13px; color:#aeb3987d; margin-top:4px;">When registering on Eventbrite select the correct ticket.</div>
+            <h2 style="margin:22px 0 12px; font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:600; color:var(--ink);">Getting there</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">The retreat is about a 30-minute drive on gravel forest roads from the nearest highway. Exact coordinates and a meeting point are emailed to registered attendees 48 hours before the event. High-clearance vehicles help in wet weather but are not required in dry conditions.</p>
+          </div>
+        </div>
+        <aside style="display:flex; flex-direction:column; gap:18px; min-width:0;">
+          <div style="border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.025); padding:18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-bottom:10px;">Weather &amp; Conditions</div>
+            <p style="margin:0 0 12px; color:var(--ink); line-height:1.55; font-size:.96rem;">Check the weather below before arriving, as fires nearby can create smoke that will prevent a CE5 from having clear skies.</p>
+            <div style="display:flex; align-items:flex-start; gap:9px; margin-bottom:8px;">
+              <span style="width:9px; height:9px; border-radius:50%; flex:none; margin-top:5px; background:#7fcf9b; box-shadow:0 0 8px #7fcf9b;"></span>
+              <span style="color:var(--muted); font-size:.92rem;">Clear skies forecast with a low near 48°F. Light breeze and excellent visibility through the new-moon window.</span>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:9px; margin-bottom:8px;">
+              <span style="width:9px; height:9px; border-radius:50%; flex:none; margin-top:5px; background:#7fcf9b; box-shadow:0 0 8px #7fcf9b;"></span>
+              <span style="color:var(--muted); font-size:.92rem;">Air quality good (AQI 22) — no active wildfire smoke in the area.</span>
+            </div>
+          </div>
+          <div style="border:1px solid var(--line); border-radius:14px; background:var(--card); padding:18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-bottom:12px;">What to bring</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Sleeping bag, pad &amp; tent</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Warm layers (nights drop near 45°F)</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Red-light flashlight or headlamp</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Folding chair or reclining mat</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Water &amp; a mug for tea</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Food to share (optional)</span>
+              </div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--line); border-radius:14px; background:var(--card); padding:18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-bottom:10px;">Special notes</div>
+            <p style="margin:0; color:var(--muted); line-height:1.6; font-size:.96rem;">Beginner-friendly. We meet at dusk for orientation and a guided meditation before fieldwork. Location is 40 minutes from a hotel; camping is available on-site.</p>
+          </div>
+          <a href="https://www.eventbrite.com/e/your-event-placeholder-1" target="_blank" rel="noopener" style="justify-content:center; display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Register on Eventbrite →</a>
+        </aside>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ═══ OVERLAY 2 — Perseid meteor shower CE5 ═══ -->
+  <sc-if value="{{ detailOpen2 }}" hint-placeholder-val="{{ false }}">
+    <div ref="{{ overlay2Ref }}" style="position:fixed; inset:0; z-index:200; overflow-y:auto; background:var(--bg); color:var(--ink);">
+      <div style="position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px clamp(16px,4vw,40px); background:rgba(10,14,9,.72); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line);">
+        <button type="button" onClick="{{ closeEvent2 }}" style="display:inline-flex; align-items:center; gap:8px; background:none; border:none; cursor:pointer; font:inherit; font-size:.95rem; color:var(--muted);" style-hover="color:var(--gold);">← All events</button>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:10px; height:10px; transform:rotate(45deg); background:var(--gold); border-radius:2px;"></span>
+          <span style="font-weight:600;">{{ groupName }}</span>
+        </div>
+      </div>
+      <header style="max-width:920px; margin:0 auto; padding:clamp(40px,7vw,80px) clamp(20px,5vw,40px) clamp(26px,4vw,40px);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:clamp(11px,1.4vw,13px); letter-spacing:.28em; text-transform:uppercase; color:var(--gold-2);">Upcoming Gathering</div>
+        <h1 style="margin:12px 0 0; font-size:clamp(2rem,5.4vw,3.4rem); font-weight:300; line-height:1.08; letter-spacing:-.02em; color:var(--ink);">Perseid meteor shower CE5</h1>
+        <div style="display:flex; flex-wrap:wrap; gap:12px 30px; margin-top:24px;">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Date</div>
+            <div style="color:var(--ink); font-size:1rem;">Saturday, August 15th, 2026</div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Time</div>
+            <div style="color:var(--ink); font-size:1rem;">9pm – 2am</div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Location</div>
+            <div style="color:var(--ink); font-size:1rem;">Near Kettle Falls, Washington</div>
+            <div style="color:var(--faint); font-size:.84rem; margin-top:4px;">Exact retreat location shared privately with registered attendees.</div>
+          </div>
+        </div>
+        <a href="https://www.eventbrite.com/e/your-event-placeholder-2" target="_blank" rel="noopener" style="margin-top:26px; display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Register on Eventbrite →</a>
+      </header>
+      <div style="max-width:920px; margin:0 auto; padding:0 clamp(20px,5vw,40px) clamp(60px,9vw,120px); display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(28px,4vw,48px); align-items:start;">
+        <div style="display:flex; flex-direction:column; gap:30px; min-width:0;">
+          <p style="margin:0; font-size:clamp(1.12rem,2vw,1.32rem); line-height:1.65; color:var(--ink);">We pair our field practice with the peak of the Perseid meteor shower — one of the best nights of the year to simply lie back and watch the sky.</p>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <p style="margin:0; color:var(--muted); line-height:1.7;">After our usual orientation and meditation, we settle into the clearing as the Perseids ramp up after midnight. Bring something comfortable to lie on; this is a night for patience and wonder.</p>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">All experience levels are welcome. If you have binoculars, bring them — and plan to stay late, as the best activity comes in the small hours.</p>
+          </div>
+          <div>
+            <h2 style="margin:0 0 14px; font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:600; color:var(--ink);">Evening schedule</h2>
+            <div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">7:00 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Gates open · camp setup</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">8:30 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Shared meal &amp; orientation</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">9:30 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Guided meditation, then fieldwork</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">12:00 AM</span>
+                <span style="color:var(--ink); line-height:1.45;">Perseid peak watch</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">2:00 AM</span>
+                <span style="color:var(--ink); line-height:1.45;">Wind down · overnight camp</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2 style="margin:0 0 12px; font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:600; color:var(--ink);">Cost</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">Registration cost for CE-5: $15</p>
+            <div style="color:#AEB398; margin-top:4px;">Optional camping cost: $25</div>
+            <div style="font-size:13px; color:#aeb3987d; margin-top:4px;">When registering on Eventbrite select the correct ticket.</div>
+            <h2 style="margin:22px 0 12px; font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:600; color:var(--ink);">Getting there</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">The retreat is about a 30-minute drive on gravel forest roads from the nearest highway. Exact coordinates and a meeting point are emailed to registered attendees 48 hours before the event. High-clearance vehicles help in wet weather but are not required in dry conditions.</p>
+          </div>
+        </div>
+        <aside style="display:flex; flex-direction:column; gap:18px; min-width:0;">
+          <div style="border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.025); padding:18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-bottom:10px;">Weather &amp; Conditions</div>
+            <p style="margin:0 0 12px; color:var(--ink); line-height:1.55; font-size:.96rem;">Check the weather below before arriving, as fires nearby can create smoke that will prevent a CE5 from having clear skies.</p>
+            <div style="display:flex; align-items:flex-start; gap:9px; margin-bottom:8px;">
+              <span style="width:9px; height:9px; border-radius:50%; flex:none; margin-top:5px; background:#e3c06a; box-shadow:0 0 8px #e3c06a;"></span>
+              <span style="color:var(--muted); font-size:.92rem;">Partly clear, low near 52°F. A few high clouds possible after midnight.</span>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:9px; margin-bottom:8px;">
+              <span style="width:9px; height:9px; border-radius:50%; flex:none; margin-top:5px; background:#e3c06a; box-shadow:0 0 8px #e3c06a;"></span>
+              <span style="color:var(--muted); font-size:.92rem;">Light wildfire haze possible (AQI ~78, moderate) — we will update as the date nears.</span>
+            </div>
+          </div>
+          <div style="border:1px solid var(--line); border-radius:14px; background:var(--card); padding:18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-bottom:12px;">What to bring</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Sleeping bag, pad &amp; tent</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">A ground tarp or recliner for sky-watching</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Warm layers</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Red-light flashlight</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Binoculars (optional)</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Food to share at the fire ring</span>
+              </div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--line); border-radius:14px; background:var(--card); padding:18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-bottom:10px;">Special notes</div>
+            <p style="margin:0; color:var(--muted); line-height:1.6; font-size:.96rem;">All levels welcome. We pair the practice with the Perseid meteor peak — bring binoculars if you have them, plus food to share at the fire ring.</p>
+          </div>
+          <a href="https://www.eventbrite.com/e/your-event-placeholder-2" target="_blank" rel="noopener" style="justify-content:center; display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Register on Eventbrite →</a>
+        </aside>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ═══ OVERLAY 3 — New moon CE5 ═══ -->
+  <sc-if value="{{ detailOpen3 }}" hint-placeholder-val="{{ false }}">
+    <div ref="{{ overlay3Ref }}" style="position:fixed; inset:0; z-index:200; overflow-y:auto; background:var(--bg); color:var(--ink);">
+      <div style="position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px clamp(16px,4vw,40px); background:rgba(10,14,9,.72); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line);">
+        <button type="button" onClick="{{ closeEvent3 }}" style="display:inline-flex; align-items:center; gap:8px; background:none; border:none; cursor:pointer; font:inherit; font-size:.95rem; color:var(--muted);" style-hover="color:var(--gold);">← All events</button>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="width:10px; height:10px; transform:rotate(45deg); background:var(--gold); border-radius:2px;"></span>
+          <span style="font-weight:600;">{{ groupName }}</span>
+        </div>
+      </div>
+      <header style="max-width:920px; margin:0 auto; padding:clamp(40px,7vw,80px) clamp(20px,5vw,40px) clamp(26px,4vw,40px);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:clamp(11px,1.4vw,13px); letter-spacing:.28em; text-transform:uppercase; color:var(--gold-2);">Upcoming Gathering</div>
+        <h1 style="margin:12px 0 0; font-size:clamp(2rem,5.4vw,3.4rem); font-weight:300; line-height:1.08; letter-spacing:-.02em; color:var(--ink);">New moon CE5</h1>
+        <div style="display:flex; flex-wrap:wrap; gap:12px 30px; margin-top:24px;">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Date</div>
+            <div style="color:var(--ink); font-size:1rem;">Saturday, September 12th, 2026</div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Time</div>
+            <div style="color:var(--ink); font-size:1rem;">8pm – 1am</div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">Location</div>
+            <div style="color:var(--ink); font-size:1rem;">Near Kettle Falls, Washington</div>
+            <div style="color:var(--faint); font-size:.84rem; margin-top:4px;">Exact retreat location shared privately with registered attendees.</div>
+          </div>
+        </div>
+        <a href="https://www.eventbrite.com/e/your-event-placeholder-3" target="_blank" rel="noopener" style="margin-top:26px; display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Register on Eventbrite →</a>
+      </header>
+      <div style="max-width:920px; margin:0 auto; padding:0 clamp(20px,5vw,40px) clamp(60px,9vw,120px); display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(28px,4vw,48px); align-items:start;">
+        <div style="display:flex; flex-direction:column; gap:30px; min-width:0;">
+          <p style="margin:0; font-size:clamp(1.12rem,2vw,1.32rem); line-height:1.65; color:var(--ink);">A longer, more in-depth evening under a new-moon sky — geared toward returning attendees who want to go deeper into observation and signaling protocols.</p>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <p style="margin:0; color:var(--muted); line-height:1.7;">We extend the evening with a fuller orientation on CSETI field protocols, including how we log sightings and work to distinguish ordinary phenomena from genuine contact. The night closes with a quiet group intention around the fire.</p>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">Newcomers are still welcome, but expect a slightly more structured, practice-focused session than our beginner nights.</p>
+          </div>
+          <div>
+            <h2 style="margin:0 0 14px; font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:600; color:var(--ink);">Evening schedule</h2>
+            <div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">4:00 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Gates open · camp setup</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">6:30 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Shared meal</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">7:30 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Protocol &amp; observation workshop</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">8:30 PM</span>
+                <span style="color:var(--ink); line-height:1.45;">Guided meditation, then fieldwork</span>
+              </div>
+              <div style="display:flex; gap:18px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line);">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:.86rem; letter-spacing:.03em; color:var(--gold); min-width:78px; flex:none;">1:00 AM</span>
+                <span style="color:var(--ink); line-height:1.45;">Closing circle · overnight camp</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2 style="margin:0 0 12px; font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:600; color:var(--ink);">Cost</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">Registration cost for CE-5: $15</p>
+            <div style="color:#AEB398; margin-top:4px;">Optional camping cost: $25</div>
+            <div style="font-size:13px; color:#aeb3987d; margin-top:4px;">When registering on Eventbrite select the correct ticket.</div>
+            <h2 style="margin:22px 0 12px; font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:600; color:var(--ink);">Getting there</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">The retreat is about a 30-minute drive on gravel forest roads from the nearest highway. Exact coordinates and a meeting point are emailed to registered attendees 48 hours before the event. High-clearance vehicles help in wet weather but are not required in dry conditions.</p>
+          </div>
+        </div>
+        <aside style="display:flex; flex-direction:column; gap:18px; min-width:0;">
+          <div style="border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.025); padding:18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-bottom:10px;">Weather &amp; Conditions</div>
+            <p style="margin:0; color:var(--faint); font-style:italic; line-height:1.55; font-size:.94rem;">Weather and smoke/fire updates will be posted closer to the event date.</p>
+          </div>
+          <div style="border:1px solid var(--line); border-radius:14px; background:var(--card); padding:18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-bottom:12px;">What to bring</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Sleeping bag, pad &amp; tent</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Warm layers &amp; a rain shell</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Red-light flashlight</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Notebook for observation logs</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Folding chair</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start;">
+                <span style="width:6px; height:6px; margin-top:8px; transform:rotate(45deg); background:var(--gold-2); flex:none; border-radius:1px;"></span>
+                <span style="color:var(--muted); line-height:1.5;">Food to share</span>
+              </div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--line); border-radius:14px; background:var(--card); padding:18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-bottom:10px;">Special notes</div>
+            <p style="margin:0; color:var(--muted); line-height:1.6; font-size:.96rem;">A longer evening to mark the new moon. Intermediate-friendly; we go deeper into observation protocols and signal practice. Camp setup from 4:00 PM.</p>
+          </div>
+          <a href="https://www.eventbrite.com/e/your-event-placeholder-3" target="_blank" rel="noopener" style="justify-content:center; display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:999px; background:var(--gold); color:var(--on-gold); font-weight:600; text-decoration:none; border:1px solid var(--gold); box-shadow:0 8px 34px rgba(232,220,171,.16);" style-hover="background:var(--gold-2); border-color:var(--gold-2);">Register on Eventbrite →</a>
+        </aside>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;groupName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;CE5 at The Experiencer Center&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;colorMood&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Cedar Night&quot;,&quot;Midnight Navy&quot;,&quot;Charcoal Ember&quot;],&quot;default&quot;:&quot;Cedar Night&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroTreatment&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Centered&quot;,&quot;Lower left&quot;],&quot;default&quot;:&quot;Centered&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;eventCardLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Stacked&quot;,&quot;Split&quot;],&quot;default&quot;:&quot;Split&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;skyMotion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Gentle&quot;,&quot;Subtle&quot;,&quot;Still&quot;],&quot;default&quot;:&quot;Gentle&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  canvasRef = React.createRef();
+  overlay1Ref = React.createRef();
+  overlay2Ref = React.createRef();
+  overlay3Ref = React.createRef();
+
+  state = { open1: false, open2: false, open3: false };
+
+  moods() {
+    return {
+      'Cedar Night': {
+        '--ink':'#f0efe1','--muted':'#aeb398','--faint':'#7e8062',
+        '--bg':'#0c110a','--bg2':'#0f140b','--card':'#151c0f','--card2':'#1c2414','--line':'#2c3621',
+        '--gold':'#ecdca0','--gold-2':'#d8c486','--on-gold':'#14140b'
+      },
+      'Midnight Navy': {
+        '--ink':'#eaeefb','--muted':'#a4b0cc','--faint':'#717da0',
+        '--bg':'#080c16','--bg2':'#0a0f1d','--card':'#0e1424','--card2':'#131b30','--line':'#202a44',
+        '--gold':'#e8dcab','--gold-2':'#d3c79a','--on-gold':'#0c1018'
+      },
+      'Charcoal Ember': {
+        '--ink':'#efece6','--muted':'#b0aaa0','--faint':'#7d766c',
+        '--bg':'#0d0e10','--bg2':'#101113','--card':'#141517','--card2':'#1a1b1e','--line':'#2a2c30',
+        '--gold':'#ecd5a0','--gold-2':'#dcc28a','--on-gold':'#15120c'
+      }
+    };
+  }
+
+  applyTheme() {
+    const root = this.rootRef.current;
+    if (!root) return;
+    const mood = this.props.colorMood || 'Cedar Night';
+    const p = this.moods()[mood] || this.moods()['Cedar Night'];
+    Object.keys(p).forEach(k => root.style.setProperty(k, p[k]));
+    const stacked = (this.props.eventCardLayout || 'Split') === 'Stacked';
+    const L = stacked
+      ? { '--card-dir':'column', '--meta-grow':'0', '--meta-basis':'auto', '--body-basis':'auto' }
+      : { '--card-dir':'row', '--meta-grow':'0', '--meta-basis':'180px', '--body-basis':'360px' };
+    Object.keys(L).forEach(k => root.style.setProperty(k, L[k]));
+  }
+
+  componentDidMount() {
+    this.applyTheme();
+    this.initSky();
+    this._onResize = () => { clearTimeout(this._rt); this._rt = setTimeout(() => this.initSky(), 200); };
+    window.addEventListener('resize', this._onResize);
+  }
+
+  componentDidUpdate(prev, prevState) {
+    if (prev.colorMood !== this.props.colorMood || prev.eventCardLayout !== this.props.eventCardLayout) this.applyTheme();
+    if (prev.skyMotion !== this.props.skyMotion) this.initSky();
+    if (prevState) {
+      if (!prevState.open1 && this.state.open1 && this.overlay1Ref.current) this.overlay1Ref.current.scrollTop = 0;
+      if (!prevState.open2 && this.state.open2 && this.overlay2Ref.current) this.overlay2Ref.current.scrollTop = 0;
+      if (!prevState.open3 && this.state.open3 && this.overlay3Ref.current) this.overlay3Ref.current.scrollTop = 0;
+    }
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    window.removeEventListener('resize', this._onResize);
+  }
+
+  initSky() {
+    const canvas = this.canvasRef.current;
+    if (!canvas) return;
+    const parent = canvas.parentElement;
+    if (!parent) return;
+    cancelAnimationFrame(this._raf);
+    const rect = parent.getBoundingClientRect();
+    const w = Math.max(1, rect.width), h = Math.max(1, rect.height);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const motion = this.props.skyMotion || 'Gentle';
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const still = motion === 'Still' || reduce;
+    const twAmp = motion === 'Subtle' ? 0.3 : 0.62;
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const skyH = h * 0.55;
+    const count = Math.min(210, Math.round(w * h / 8600));
+    const stars = [];
+    for (let i = 0; i < count; i++) {
+      stars.push({ x: rnd(0, w), y: Math.pow(Math.random(), 1.3) * skyH, r: rnd(0.4, 1.5), a: rnd(0.16, 0.68), s: rnd(0.0009, 0.0024), p: rnd(0, Math.PI * 2), gold: Math.random() < 0.16 });
+    }
+    const draw = (time) => {
+      ctx.clearRect(0, 0, w, h);
+      for (const st of stars) {
+        let a = st.a;
+        if (!still) a = st.a * (1 - twAmp) + st.a * twAmp * (0.5 + 0.5 * Math.sin(time * st.s + st.p));
+        a = Math.max(0, a);
+        ctx.globalAlpha = a;
+        ctx.fillStyle = st.gold ? '#f4e6b4' : '#eaf1ff';
+        ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.2832); ctx.fill();
+        if (st.r > 1.1) { ctx.globalAlpha = a * 0.25; ctx.beginPath(); ctx.arc(st.x, st.y, st.r * 2.6, 0, 6.2832); ctx.fill(); }
+      }
+      ctx.globalAlpha = 1;
+      if (!still) this._raf = requestAnimationFrame(draw);
+    };
+    if (still) draw(0); else this._raf = requestAnimationFrame(draw);
+  }
+
+  renderVals() {
+    const centered = (this.props.heroTreatment || 'Centered') !== 'Lower left';
+    return {
+      rootRef: this.rootRef,
+      canvasRef: this.canvasRef,
+      overlay1Ref: this.overlay1Ref,
+      overlay2Ref: this.overlay2Ref,
+      overlay3Ref: this.overlay3Ref,
+      groupName: this.props.groupName || 'CE5 at The Experiencer Center',
+      detailOpen1: this.state.open1,
+      detailOpen2: this.state.open2,
+      detailOpen3: this.state.open3,
+      openEvent1: () => this.setState({ open1: true }),
+      openEvent2: () => this.setState({ open2: true }),
+      openEvent3: () => this.setState({ open3: true }),
+      closeEvent1: () => this.setState({ open1: false }),
+      closeEvent2: () => this.setState({ open2: false }),
+      closeEvent3: () => this.setState({ open3: false }),
+      heroCentered: centered,
+      heroLeft: !centered
+    };
+  }
+}
+</script>
+</body>
+</html>
